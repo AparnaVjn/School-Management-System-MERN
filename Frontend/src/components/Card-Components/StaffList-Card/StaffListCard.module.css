@@ -1,0 +1,50 @@
+.cardWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .addCard {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .addCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .icon {
+    color: #f9aa2a;
+    margin-top: 70px;
+  }
+  
+  .title {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #cd8107;
+  }
+  
+  /* Make the card responsive */
+  @media (min-width: 576px) {
+    .cardWrapper {
+      flex-basis: 50%; /* Two cards per row */
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .cardWrapper {
+      flex-basis: 100%; /* One card per row for small screens */
+    }
+  }
+  

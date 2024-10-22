@@ -1,0 +1,38 @@
+.librarianContainer {
+  background-color: #f7cf8f;
+}
+
+
+.formContainer {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .cancelButton {
+    width: 45%;
+  }
+  
+  .submitButton {
+    width: 45%;
+  }
+  

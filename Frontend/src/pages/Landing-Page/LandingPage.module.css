@@ -1,0 +1,96 @@
+.landingPage {
+    height: 100vh; /* Full viewport height */
+    background-image: url('../../assets/landingPage.png'); /* Background image */
+    background-size: cover; /* Make the image cover the full screen */
+    background-position: center;
+    position: relative;
+}
+
+.overlay {
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.5); Optional dark overlay */
+}
+
+.contentWrapper {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.schoolName {
+    color: white;
+    font-size: 3vh;
+    font-weight: bold;
+    position: absolute;
+    left: 5%;
+    top: 5%; /* Adjust to position just above the middle */
+}
+
+.loginButton {
+    position: absolute;
+    top: 5%;
+    right: 20px;
+}
+
+.schoolIcon {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 200px; 
+    height: 200px;
+}
+
+.schoolIcon img {
+    width: 100%;
+    height: auto;
+}
+
+/* Mobile and Tablet View (up to 768px wide) */
+@media (max-width: 768px) {
+    .schoolName {
+        font-size: 4vw;
+        left: 10px;
+        top: 10px;
+    }
+
+    .loginButton {
+        top: 10px;
+        right: 10px;
+    }
+
+    .schoolIcon {
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px; /* Reduce size on smaller screens */
+        height: 150px;
+    }
+}
+
+/* Smaller Mobile View (up to 480px wide) */
+@media (max-width: 480px) {
+    .schoolName {
+        position: absolute;
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -100%); /* Adjust for exact centering */
+        font-size: 6vw; /* Adjust font size for mobile view */
+        text-align: center;
+    }
+
+    .loginButton {
+        top: 10px; /* Keep it near the top right corner */
+        right: 10px;
+    }
+
+    .schoolIcon {
+        position: absolute;
+        top: 60%; /* Adjust to move it below the heading */
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+        width: 100px; /* Smaller size for mobile */
+        height: 100px;
+    }
+}

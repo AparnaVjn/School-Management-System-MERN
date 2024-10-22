@@ -1,0 +1,27 @@
+.form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.formRow {
+  margin-bottom: 15px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submitButton, .cancelButton {
+  width: 100px;
+}

@@ -1,0 +1,48 @@
+.form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  }
+  
+  .heading {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .formRow {
+    margin-bottom: 20px;
+    row-gap: 20px;
+  }
+  
+  .noSpinner {
+    -moz-appearance: textfield;
+  }
+  
+  .noSpinner::-webkit-outer-spin-button,
+  .noSpinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .submitButton {
+    background-color: #582415; 
+    margin-top: 20px; 
+    padding: 10px 20px;
+  }
+
+  .cancelButton {
+    background-color: #ef2d2d; 
+    margin-top: 20px; 
+    
+    padding: 10px 20px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

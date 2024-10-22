@@ -1,0 +1,30 @@
+/* Fees.module.css */
+.container {
+    padding: 20px;
+    background-color: #f7cf8f;
+  }
+  
+  .card {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .activeCard {
+    border: 3px solid #333;
+  }
+  
+  .content {
+    margin-top: 20px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 10px;
+    }
+  }
+  

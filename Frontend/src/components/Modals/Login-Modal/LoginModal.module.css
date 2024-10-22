@@ -1,0 +1,101 @@
+.customModal {
+    background-color: transparent !important;
+    border: none;
+    max-width: 90%; /* Set a max width for the modal */
+    margin: 0 auto; /* Center the modal */
+}
+
+.modalBody {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.modalContentWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
+}
+
+.leftSection {
+    flex: 1; /* Make the left section flexible */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.rightSection {
+    flex: 2; /* Make the right section larger */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.rightSection h2,
+.leftSection h2 {
+    margin-bottom: 20px;
+}
+
+.customButton {
+    background-color: #f48540;
+    color: white;
+    border: none;
+    width: 100%; /* Full width button */
+    padding: 10px; /* Add padding for better touch targets */
+}
+
+.customButton:hover {
+    background-color: #f89e66;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .modalContentWrapper {
+        flex-direction: column; /* Stack sections vertically on medium screens */
+    }
+
+    .leftSection,
+    .rightSection {
+        width: 100%; /* Full width on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .customModal {
+        max-width: 95%; /* Adjust max width for smaller screens */
+    }
+    
+    .leftSection {
+        margin-bottom: 20px; /* Space between sections */
+    }
+    
+    .rightSection {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .rightSection h2,
+    .leftSection h2 {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .customModal {
+        max-width: 100%; /* Full width for extra small screens */
+        padding: 0 10px; /* Add consistent padding on left and right */
+    }
+    
+    .leftSection,
+    .rightSection {
+        padding: 10px; /* Further reduce padding for extra small screens */
+    }
+
+    .modalBody {
+        flex-direction: column; /* Stack sections vertically on very small screens */
+    }
+
+    .rightSection h2,
+    .leftSection h2 {
+        font-size: 1.2em; /* Adjust font size for better visibility */
+    }
+}

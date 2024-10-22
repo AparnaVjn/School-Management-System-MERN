@@ -1,0 +1,18 @@
+.staffContainer {
+    padding: 20px;
+    background-color: #f7cf8f;
+  
+  }
+  
+  .cardCol {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .cardCol {
+      margin: 10px 0;
+    }
+  }
+  

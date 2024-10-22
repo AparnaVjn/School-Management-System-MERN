@@ -1,0 +1,21 @@
+.dashboardContainer {
+    padding: 60px;
+    background-color: #f7cf8f;
+  }
+  
+  .dashboardCard {
+    border-radius: 15px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 40px;
+  }
+  
+  .dashboardCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .icon {
+    margin-bottom: 10px;
+  }
+  

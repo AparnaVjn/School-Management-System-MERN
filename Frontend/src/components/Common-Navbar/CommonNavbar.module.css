@@ -1,0 +1,26 @@
+
+.customNavbar {
+  background-color: #ffdab9;
+}
+.userLogo {
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%; 
+    margin-right: 15px;
+  }
+  
+  .userInfo {
+    text-align: right; 
+  }
+  
+  @media (max-width: 576px) {
+    .userLogo {
+      width: 30px; 
+      height: 30px;
+    }
+  
+    .userInfo {
+      font-size: 0.8rem; 
+    }
+  }
+  

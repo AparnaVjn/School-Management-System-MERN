@@ -1,0 +1,50 @@
+
+.cardWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 30px;
+    transition: transform 0.3s ease;
+}
+  
+.feeCard {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+  
+.feeCard:hover {
+    transform: scale(1.05);
+}
+  
+.icon {
+    color: #28a745; /* Color related to finance or fee */
+    margin-top: 70px;
+}
+  
+.title {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #155724;
+}
+
+/* Responsive design */
+@media (min-width: 576px) {
+    .cardWrapper {
+        flex-basis: 50%;
+    }
+}
+  
+@media (max-width: 575px) {
+    .cardWrapper {
+        flex-basis: 100%;
+    }
+}

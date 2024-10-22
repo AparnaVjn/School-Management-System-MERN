@@ -1,0 +1,28 @@
+
+.feeTypesContainer {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .feeForm {
+    margin-bottom: 20px;
+  }
+  
+  .submitBtn {
+    margin-top: 10px;
+  }
+  
+  .feeTable {
+    margin-top: 20px;
+  }
+  
+  .editBtn {
+    margin-right: 10px;
+  }
+
+  .cancelBtn {
+    margin-left: 5px;
+    margin-top: 10px;
+  }
+  

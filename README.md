@@ -15,14 +15,14 @@ JWT_SECRET=your_jwt_secret_key
 
 ###  **Frontend**
 
-cd Frontend
-npm install
-npm run dev
+cd Frontend , 
+npm install , 
+npm run dev , 
 
 ###  **Backend**
-cd Backend
-npm install
-add env file
+cd Backend , 
+npm install , 
+add env file , 
 npm start
 
 ## Demo link

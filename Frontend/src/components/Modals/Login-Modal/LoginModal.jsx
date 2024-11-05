@@ -17,7 +17,6 @@ const LoginModal = ({ show, handleClose }) => {
     const handleLogin = (e) => {
         e.preventDefault();
         const credentials = { email, password, role };
-        console.log('user data:',credentials)
         dispatch(loginUser(credentials));
     };
 

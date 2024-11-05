@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import styles from './LandingPage.module.css'; 
-import icon from '../../assets/schoolLogo.png'; 
+import styles from './LandingPage.module.css';
+import icon from '../../assets/schoolLogo.png';
 import LoginModal from '../../components/Modals/Login-Modal/LoginModal';
 
 const LandingPage = () => {
     const [showModal, setShowModal] = useState(false);
 
-    
+
     const handleShow = () => setShowModal(true);
     const handleClose = () => setShowModal(false);
     return (

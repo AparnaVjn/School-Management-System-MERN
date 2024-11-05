@@ -1,14 +1,13 @@
 .landingPage {
-    height: 100vh; /* Full viewport height */
-    background-image: url('../../assets/landingPage.png'); /* Background image */
-    background-size: cover; /* Make the image cover the full screen */
+    height: 100vh; 
+    background-image: url('../../assets/landingPage.png'); 
+    background-size: cover; 
     background-position: center;
     position: relative;
 }
 
 .overlay {
     height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.5); Optional dark overlay */
 }
 
 .contentWrapper {
@@ -25,7 +24,7 @@
     font-weight: bold;
     position: absolute;
     left: 5%;
-    top: 5%; /* Adjust to position just above the middle */
+    top: 5%; 
 }
 
 .loginButton {
@@ -47,7 +46,7 @@
     height: auto;
 }
 
-/* Mobile and Tablet View (up to 768px wide) */
+
 @media (max-width: 768px) {
     .schoolName {
         font-size: 4vw;
@@ -64,33 +63,33 @@
         top: 30%;
         left: 50%;
         transform: translateX(-50%);
-        width: 150px; /* Reduce size on smaller screens */
+        width: 150px; 
         height: 150px;
     }
 }
 
-/* Smaller Mobile View (up to 480px wide) */
+
 @media (max-width: 480px) {
     .schoolName {
         position: absolute;
-        top: 50%; /* Center vertically */
-        left: 50%; /* Center horizontally */
-        transform: translate(-50%, -100%); /* Adjust for exact centering */
-        font-size: 6vw; /* Adjust font size for mobile view */
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -100%); 
+        font-size: 6vw; 
         text-align: center;
     }
 
     .loginButton {
-        top: 10px; /* Keep it near the top right corner */
+        top: 10px; 
         right: 10px;
     }
 
     .schoolIcon {
         position: absolute;
-        top: 60%; /* Adjust to move it below the heading */
+        top: 60%; 
         left: 50%;
-        transform: translate(-50%, -50%); /* Center horizontally and vertically */
-        width: 100px; /* Smaller size for mobile */
+        transform: translate(-50%, -50%); 
+        width: 100px; 
         height: 100px;
     }
 }

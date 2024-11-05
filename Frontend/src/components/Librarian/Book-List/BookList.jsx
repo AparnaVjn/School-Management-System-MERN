@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, deleteBook } from '../../../slices/librarianSlice';
 import BookDetailsModal from '../../Modals/BookDetails-Modal/BookDetailsModal';
 import EditBookModal from '../../Modals/EditBook-Modal/EditBookModal';
-import styles from './BookList.module.css'
+import styles from './BookList.module.css';
 
 function BookList() {
   const dispatch = useDispatch();
@@ -103,58 +103,55 @@ function BookList() {
   return (
     <div className={styles.bookList}>
       <h2>Book List</h2>
-      <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>SL No.</th>
-      <th>Book Name</th>
-      <th>Author</th>
-      <th>Language</th>
-      <th>Category</th>
-      <th>Serial Number</th>
-      <th>Availability</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {visibleBook.map((book, index) => (
-      <tr key={book._id}>
-        <td>{index + 1}</td>
-        <td>
-          <Button
-            variant="link"
-            onClick={() => handleBookClick(book)}
-            style={{ textDecoration: 'none' }}
-          >
-            {book.bookName}
-          </Button>
-        </td>
-        <td>{book.author}</td>
-        <td>{book.language}</td>
-        <td>{book.category}</td>
-        <td>{book.serialNo}</td>
-        <td>
-          {book.isAvailable ? (
-            "Available"
-          ) : (
-            <span style={{ color: 'red' }}>Unavailable</span>
-          )}
-        </td>
-        <td>
-          <Button variant="warning" onClick={() => handleEditClick(book)}>
-            Edit
-          </Button>{' '}
-          <Button variant="danger" onClick={() => handleDeleteClick(book._id)}>
-            Delete
-          </Button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</Table>
+      <div className="table-responsive">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Book Name</th>
+              <th>Author</th>
+              <th>Language</th>
+              <th>Category</th>
+              <th>Serial Number</th>
+              <th>Availability</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {visibleBook.map((book, index) => (
+              <tr key={book._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <Button
+                    variant="link"
+                    onClick={() => handleBookClick(book)}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    {book.bookName}
+                  </Button>
+                </td>
+                <td>{book.author}</td>
+                <td>{book.language}</td>
+                <td>{book.category}</td>
+                <td>{book.serialNo}</td>
+                <td>
+                  {book.isAvailable ? "Available" : <span style={{ color: 'red' }}>Unavailable</span>}
+                </td>
+                <td>
+                  <Button variant="warning" onClick={() => handleEditClick(book)}>
+                    Edit
+                  </Button>{' '}
+                  <Button variant="danger" onClick={() => handleDeleteClick(book._id)}>
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
-
-      {/* Show book details in a modal */}
+      {/* book details  modal */}
       {selectedBook && (
         <BookDetailsModal
           book={selectedBook}
@@ -163,7 +160,7 @@ function BookList() {
         />
       )}
 
-      {/* Show edit book modal */}
+      {/*  edit book modal */}
       {editBook && (
         <EditBookModal
           book={editBook}

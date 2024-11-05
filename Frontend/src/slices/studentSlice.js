@@ -19,7 +19,7 @@ export const addStudentPayment = createAsyncThunk(
         amount,
         method,
       });
-      return response.data; // Return the updated student data
+      return response.data; 
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -44,7 +44,6 @@ export const fetchStudents = createAsyncThunk(
   'students/fetchStudents',
   async () => {
     const response = await axios.get(`${apiurl}/students`); 
-    console.log('student data:',response.data)
     return response.data; 
   }
 );
@@ -53,7 +52,6 @@ const studentSlice = createSlice({
   name: 'students',
   initialState,
   reducers: {
-    // Optionally, you can keep the local addStudent reducer if you want to manage local state
     addStudent: (state, action) => {
       state.students.push(action.payload);
     },
@@ -79,7 +77,6 @@ const studentSlice = createSlice({
       })
       .addCase(fetchStudents.fulfilled, (state, action) => {
         state.loading = false;
-        // Replace the current students array with the fetched students
         state.students = action.payload;
       })
       .addCase(fetchStudents.rejected, (state, action) => {
@@ -95,12 +92,11 @@ const studentSlice = createSlice({
         state.loading = false;
         const updatedStudent = action.payload;
 
-        // Find the student by ID and update the record
         const index = state.students.findIndex(
           (student) => student.admissionNo === updatedStudent.admissionNo
         );
         if (index !== -1) {
-          state.students[index] = updatedStudent; // Update the student with the new payment details
+          state.students[index] = updatedStudent; 
         }
       })
       .addCase(addStudentPayment.rejected, (state, action) => {

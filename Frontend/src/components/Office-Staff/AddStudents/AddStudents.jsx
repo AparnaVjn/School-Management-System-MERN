@@ -54,7 +54,13 @@ const AddStudents = () => {
   };
 
   const handleCancel = () => {
-    // setShowForm(false); 
+    setFormData({
+      studentName: '',
+      admissionNo: '',
+      className: '',
+      division: '',
+      gender: '',
+    });
   };
 
   return(

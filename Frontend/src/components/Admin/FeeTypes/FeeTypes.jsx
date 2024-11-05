@@ -13,10 +13,10 @@ const FeeTypes = () => {
   const [editingFeeId, setEditingFeeId] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
-  const [modalAction, setModalAction] = useState(null); // Tracks whether it's delete or edit
-  const [currentFee, setCurrentFee] = useState(null); // Tracks the fee currently being acted on
+  const [modalAction, setModalAction] = useState(null); 
+  const [currentFee, setCurrentFee] = useState(null); 
 
-  // Fetch fee types when component mounts
+  
   useEffect(() => {
     dispatch(fetchFeeTypes());
   }, [dispatch]);
@@ -25,7 +25,6 @@ const FeeTypes = () => {
     e.preventDefault();
 
     if (editingFeeId) {
-      // Show modal for confirmation when editing
       setModalAction('edit');
       setShowModal(true);
     } else {
@@ -35,20 +34,17 @@ const FeeTypes = () => {
   };
 
   const handleEdit = (fee) => {
-    // Pre-fill the form fields with selected fee's data for editing
     setFeeType(fee.feeType);
     setFeeAmount(fee.feeAmount);
     setClassName(fee.classSelected);
-    setEditingFeeId(fee._id); // Store the id of the fee being edited
+    setEditingFeeId(fee._id); 
   };
 
   const handleCancel = () => {
-    // Reset form fields and exit edit mode
     resetForm();
   };
 
   const handleDelete = (fee) => {
-    // Show modal for confirmation before deleting
     setCurrentFee(fee);
     setModalAction('delete');
     setShowModal(true);
@@ -56,14 +52,12 @@ const FeeTypes = () => {
 
   const confirmAction = () => {
     if (modalAction === 'edit') {
-      // Dispatch update action if confirmed
       dispatch(updateFeeType({ id: editingFeeId, feeType, feeAmount, className }));
       resetForm();
     } else if (modalAction === 'delete') {
-      // Dispatch delete action if confirmed
       dispatch(deleteFeeType(currentFee._id));
     }
-    setShowModal(false); // Close modal after confirmation
+    setShowModal(false); 
   };
 
   const resetForm = () => {
@@ -129,8 +123,8 @@ const FeeTypes = () => {
           )}
         </div>
       </Form>
-
-      <Table striped bordered hover className={styles.feeTable}>
+      <div className="table-responsive">
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Fee Type</th>
@@ -157,6 +151,7 @@ const FeeTypes = () => {
           ))}
         </tbody>
       </Table>
+      </div>
 
       {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>

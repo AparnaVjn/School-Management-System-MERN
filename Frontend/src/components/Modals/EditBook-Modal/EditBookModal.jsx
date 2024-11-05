@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { editBook } from '../../../slices/librarianSlice'; // Import the editBook thunk
+import { editBook } from '../../../slices/librarianSlice'; 
 
 function EditBookModal({ book, show, onClose }) {
-  const dispatch = useDispatch(); // Initialize the dispatch function
+  const dispatch = useDispatch(); 
   const [bookName, setBookName] = useState(book.bookName);
   const [author, setAuthor] = useState(book.author);
   const [language, setLanguage] = useState(book.language);
   const [category, setCategory] = useState(book.category);
   const [serialNo, setSerialNo] = useState(book.serialNo);
 
-  // State to control the confirmation modal
+
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleSave = () => {
-    const updatedBook = { bookName, author, language, category, serialNo }; // Prepare the updated book data
+    const updatedBook = { bookName, author, language, category, serialNo }; 
 
-    // Dispatch the editBook thunk
+
     dispatch(editBook({ id: book._id, updatedData: updatedBook }))
       .then(() => {
         console.log("Book updated successfully");
-        onClose(); // Close the modal after saving
+        onClose(); 
       })
       .catch((error) => {
         console.error("Error updating book:", error);
       });
   };
 
-  // Function to handle save button click
+
   const handleSaveButtonClick = () => {
-    setShowConfirmModal(true); // Show the confirmation modal
+    setShowConfirmModal(true); 
   };
 
   return (
@@ -106,8 +106,8 @@ function EditBookModal({ book, show, onClose }) {
             Cancel
           </Button>
           <Button variant="primary" onClick={() => {
-            handleSave(); // Call handleSave to save the changes
-            setShowConfirmModal(false); // Close the confirmation modal
+            handleSave(); 
+            setShowConfirmModal(false); 
           }}>
             Yes, Save Changes
           </Button>

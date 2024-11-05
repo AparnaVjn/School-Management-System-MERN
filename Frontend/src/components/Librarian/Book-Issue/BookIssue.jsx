@@ -11,7 +11,7 @@ const BookIssue = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [bookName, setBookName] = useState(""); 
-  const [hasSearched, setHasSearched] = useState(false);  // New state to track search
+  const [hasSearched, setHasSearched] = useState(false); 
 
   const dispatch = useDispatch();
   const { students, loading: studentLoading, error: studentError } = useSelector((state) => state.students);
@@ -29,44 +29,39 @@ const BookIssue = () => {
     } else {
       setSelectedStudent(null);
     }
-    setHasSearched(true);  // Set hasSearched to true after attempting a search
+    setHasSearched(true); 
   };
 
   const handleSerialNoChange = (e) => {
     const enteredSerialNo = e.target.value;
     setSerialNo(enteredSerialNo);
 
-    // Find the book using the serial number
+    
     const foundBook = books.find((book) => book.serialNo === enteredSerialNo);
     if (foundBook) {
-      setBookName(foundBook.bookName); // Automatically set the book name based on serial number
+      setBookName(foundBook.bookName);
     } else {
-      setBookName(""); // Clear the book name if not found
+      setBookName(""); 
     }
   };
 
   const handleIssueBook = () => {
     if (bookName) {
-      // Dispatch the action to issue the book
       dispatch(issueBookToStudent({ admissionNo: studentId, serialNo, bookName }))
         .then(() => {
-          // After the book is issued successfully, update the selectedStudent's issuedBooks
           const newIssuedBook = {
             serialNo,
             bookName,
-            issueDate: new Date().toISOString(), // Use current date as issue date
+            issueDate: new Date().toISOString(), 
           };
   
-          // Update the selectedStudent's issuedBooks without mutating the original object
           setSelectedStudent({
             ...selectedStudent,
             issuedBooks: [...selectedStudent.issuedBooks, newIssuedBook],
           });
   
-          // Close the modal
           setShowModal(false);
   
-          // Optionally, reset serialNo and bookName after issuing
           setSerialNo("");
           setBookName("");
         });
@@ -144,7 +139,7 @@ const BookIssue = () => {
               type="text"
               placeholder="Enter book serial number"
               value={serialNo}
-              onChange={handleSerialNoChange} // Use the custom handler to find the book name
+              onChange={handleSerialNoChange} 
             />
           </Form.Group>
 

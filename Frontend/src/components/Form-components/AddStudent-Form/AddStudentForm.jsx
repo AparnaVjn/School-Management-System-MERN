@@ -21,7 +21,7 @@ const AddStudentForm = () => {
 
   const backendError = useSelector((state) => state.students.error); 
   console.log('backend error',backendError)
-  const loading = useSelector((state) => state.students.loading); // Access loading state
+  const loading = useSelector((state) => state.students.loading); 
 
   const validate = () => {
     const errors = {};
@@ -44,11 +44,11 @@ const AddStudentForm = () => {
     setValidated(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      dispatch(addStudent(formData)); // Dispatch the form data to the Redux action
+      dispatch(addStudent(formData)); 
     }
   };
 
-  // Reset form after successful submission
+
   useEffect(() => {
     if (!loading && !backendError && validated) {
       setFormData({
@@ -62,9 +62,9 @@ const AddStudentForm = () => {
     }
   }, [loading, backendError, validated]);
 
-  // Handle cancel button click
+
   const handleCancel = () => {
-    setShowForm(false); // Hide the form and show the Student component
+    setShowForm(false); 
   };
 
   return (

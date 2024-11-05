@@ -38,6 +38,7 @@ const studentSchema = mongoose.Schema({
       default: Date.now
     }
   }],
+
   totalFees: {
     type: Number,
     required: true
@@ -47,6 +48,8 @@ const studentSchema = mongoose.Schema({
     required: true,
     default: 0
   },
+
+
   paymentHistory: [{
     paymentDate: {
       type: Date,
@@ -63,6 +66,8 @@ const studentSchema = mongoose.Schema({
       enum: ['Cash', 'Card', 'Online Transfer']
     }
   }],
+
+
   dueAmount: {
     type: Number
   },
@@ -72,9 +77,14 @@ const studentSchema = mongoose.Schema({
 });
 
 // Middleware to compute dueAmount and paymentStatus before saving
-studentSchema.pre('save', function(next) {
+studentSchema.pre('validate', function(next) {
+  // Calculate the total amount paid from payment history
+  this.amountPaid = this.paymentHistory.reduce((total, payment) => total + payment.amount, 0);
+  
+  // Calculate due amount as total fees minus the amount paid
   this.dueAmount = this.totalFees - this.amountPaid;
   
+  // Determine payment status based on the amount paid relative to total fees
   if (this.amountPaid >= this.totalFees) {
     this.paymentStatus = 'Paid';
   } else if (this.amountPaid > 0) {
@@ -83,12 +93,9 @@ studentSchema.pre('save', function(next) {
     this.paymentStatus = 'Pending';
   }
   
-  // Prevent amountPaid from exceeding totalFees
-  // if (this.amountPaid > this.totalFees) {
-  //   return next(new Error('Amount paid cannot exceed total fees'));
-  // }
   next();
 });
+
 
 const Student = mongoose.model('Student', studentSchema);
 export default Student;

@@ -5,14 +5,11 @@ import { Chart as ChartJS, ArcElement, BarElement, CategoryScale, LinearScale, T
 import { Pie, Bar } from 'react-chartjs-2';
 import styles from './Dashboard.module.css';
 import { fetchDashboardData } from '../../../slices/adminSlice';
-
-// Register required components from Chart.js
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
-  // Fetching data from redux store
   const { studentsCount, staffCount, booksCount, feeReceived, genderData, classData } = useSelector(
     (state) => state.admin.dashboard
   );
@@ -21,7 +18,6 @@ const Dashboard = () => {
     dispatch(fetchDashboardData());
   }, [dispatch]);
 
-  // Data for the Pie chart (Number of boys and girls)
   const pieData = {
     labels: ['Boys', 'Girls'],
     datasets: [
@@ -31,13 +27,13 @@ const Dashboard = () => {
       },
     ],
   };
- // Pie chart options to reduce size
+ 
  const pieOptions = {
-  maintainAspectRatio: false, // Allows us to adjust the size
+  maintainAspectRatio: false, 
   responsive: true,
 };
 
-  // Data for the Bar chart (Class wise total, boys, and girls)
+  
   const barData = {
     labels: ['Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'],
     datasets: [
@@ -64,7 +60,7 @@ const Dashboard = () => {
     maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: true, // Make sure the y-axis starts from zero
+        beginAtZero: true, 
       },
     },
   };
@@ -112,7 +108,7 @@ const Dashboard = () => {
         {/* Pie Chart for Gender Distribution */}
         <Col md={6} className={styles.chartContainer}>
           <h5>Gender Distribution</h5>
-          <div style={{ height: '300px', width: '100%' }}> {/* Adjusting the chart container size */}
+          <div style={{ height: '300px', width: '100%' }}> 
             <Pie data={pieData} options={pieOptions} />
           </div>
         </Col>

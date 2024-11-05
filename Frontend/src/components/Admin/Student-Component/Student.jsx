@@ -11,13 +11,13 @@ const Student = () => {
   const [isAddingStudent, setIsAddingStudent] = useState(false); 
   const [isViewingStudents, setIsViewingStudents] = useState(false); 
 
-  // Function to handle when the AddStudentCard is clicked
+
   const handleAddStudentClick = () => {
     setIsAddingStudent(true); 
     setIsViewingStudents(false); 
   };
 
-  // Function to handle when the StudentListCard is clicked
+
   const handleStudentListClick = () => {
     setIsViewingStudents(true); 
     setIsAddingStudent(false); 

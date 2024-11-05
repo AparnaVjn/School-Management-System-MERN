@@ -18,7 +18,7 @@ const Dashboard = () => {
     dispatch(fetchDashboardData());
   }, [dispatch]);
 
-  // Loading and error handling
+
   if (loadingBooks || loadingStudents) {
     return (
       <div className={styles.loading}>
@@ -36,7 +36,7 @@ const Dashboard = () => {
     <div className={styles.dashboardContainer}>
       <h2 className="mb-4">Dashboard</h2>
       <Row xs={1} md={2} lg={2} className="g-5">
-        <Col md={6}>
+        <Col >
           <Card className={styles.card}  style={{ backgroundColor: '#3498db' }}>
             <Card.Body>
               <Card.Title>Total Books</Card.Title>
@@ -44,7 +44,7 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>       
-        <Col md={6}>
+        <Col >
           <Card className={styles.card}  style={{ backgroundColor: '#e67e22' }}>
             <Card.Body>
               <Card.Title>Books Available</Card.Title>
@@ -52,7 +52,7 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={6}>
+        <Col >
           <Card className={styles.card}  style={{ backgroundColor: '#2ecc71' }}>
             <Card.Body>
               <Card.Title>Total Students</Card.Title>
@@ -60,7 +60,7 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>    
-        <Col md={6}>
+        <Col >
           <Card className={styles.card}  style={{ backgroundColor: '#e74c3c' }}>
             <Card.Body>
               <Card.Title>Total Fees Collected</Card.Title>

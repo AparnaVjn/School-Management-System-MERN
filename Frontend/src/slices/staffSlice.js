@@ -14,11 +14,10 @@ const initialState = {
 
 // Async thunk to fetch dashboard data
 export const fetchDashboardData = createAsyncThunk(
-  'staff/fetchDashboardData',  // Reuse the 'staff' slice namespace
+  'staff/fetchDashboardData', 
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${apiurl}/dashboard`);
-      console.log('staff dashboard:',response.data)
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

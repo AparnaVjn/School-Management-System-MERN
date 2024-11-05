@@ -1,74 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { returnBook } from '../../../slices/librarianSlice'; 
-import { fetchStudents } from '../../../slices/studentSlice'; 
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { returnBook } from '../../../slices/librarianSlice';
+import { fetchStudents } from '../../../slices/studentSlice';
+import { Table, Button, Modal, Form, Alert } from 'react-bootstrap';
 import styles from './BookReceive.module.css';
 
 const BookReceive = () => {
   const dispatch = useDispatch();
-  const [serialNo, setSerialNo] = useState(''); // Track serial number input
-  const [showModal, setShowModal] = useState(false); // Control modal visibility
-  const [bookDetails, setBookDetails] = useState(null); // Store fetched book and student details
+  const [serialNo, setSerialNo] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [bookDetails, setBookDetails] = useState(null);
+  const [bookNotIssued, setBookNotIssued] = useState(false);
+  const { students } = useSelector((state) => state.students);
 
-  const { students } = useSelector((state) => state.students); // Get students from Redux store
-  console.log('student array:',students)
-
-  // Handle serial number input change
   const handleSerialNoChange = (e) => {
     setSerialNo(e.target.value);
   };
 
-  console.log('serial no.',serialNo)
-
-  // Fetch all students on component mount
   useEffect(() => {
     dispatch(fetchStudents());
   }, [dispatch]);
 
-  // Fetch book details based on serial number
+
   const fetchBookDetails = () => {
-    // Find the student who has the book issued
-    const matchedStudents = students.filter((student) => 
+    const matchedStudents = students.filter((student) =>
       student.issuedBooks.some((book) => book.serialNo === serialNo)
     );
-  
+
     if (matchedStudents.length > 0) {
-      // If the student is found, get the first matched student
       const student = matchedStudents[0];
-      
-      // Find the specific book in the student's issuedBooks list
       const issuedBook = student.issuedBooks.find((book) => book.serialNo === serialNo);
-  
-      // Set the details if both student and issued book are found
+
       if (issuedBook) {
         setBookDetails({ student, issuedBook });
+        setBookNotIssued(false);
       } else {
         setBookDetails(null);
+        setBookNotIssued(true);
       }
     } else {
-      // If no matching student is found, clear the details
       setBookDetails(null);
+      setBookNotIssued(true);
     }
   };
-  console.log('book details',bookDetails)
 
-  // Show return confirmation modal
   const handleReturnClick = () => {
     setShowModal(true);
   };
 
-  // Confirm the return action and dispatch returnBook action
   const confirmReturn = () => {
-    dispatch(returnBook(serialNo)); 
+    dispatch(returnBook(serialNo));
     setShowModal(false);
-    setBookDetails(null); 
+    setBookDetails(null);
+    setBookNotIssued(false);
   };
 
-  // Handle form submission to fetch book details
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form default submission
-    fetchBookDetails(); // Fetch book details based on serial number
+    e.preventDefault();
+    fetchBookDetails();
   };
 
   return (
@@ -90,34 +79,43 @@ const BookReceive = () => {
         </Button>
       </Form>
 
+      {/* Show message if book is not issued */}
+      {bookNotIssued && (
+        <Alert variant="warning" className="mt-3">
+          The book is not issued.
+        </Alert>
+      )}
+
       {/* Display book and student details in a table if found */}
       {bookDetails && (
         <div>
           <h4>Book and Student Details</h4>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Student Name</th>
-                <th>Class</th>
-                <th>Division</th>
-                <th>Issued Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{bookDetails.student.studentName}</td>
-                <td>{bookDetails.student.className}</td>
-                <td>{bookDetails.student.division}</td>
-                <td>{new Date(bookDetails.issuedBook.issueDate).toLocaleDateString()}</td>
-                <td>
-                  <Button variant="danger" onClick={handleReturnClick}>
-                    Return
-                  </Button>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+          <div className="table-responsive">
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Class</th>
+                  <th>Division</th>
+                  <th>Issued Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{bookDetails.student.studentName}</td>
+                  <td>{bookDetails.student.className}</td>
+                  <td>{bookDetails.student.division}</td>
+                  <td>{new Date(bookDetails.issuedBook.issueDate).toLocaleDateString()}</td>
+                  <td>
+                    <Button variant="danger" onClick={handleReturnClick}>
+                      Return
+                    </Button>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
 
           {/* Modal to confirm the return action */}
           <Modal show={showModal} onHide={() => setShowModal(false)}>

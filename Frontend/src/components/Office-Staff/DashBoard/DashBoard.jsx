@@ -9,7 +9,6 @@ import { fetchDashboardData } from '../../../slices/staffSlice';
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { students, staff, books, totalFeesCollected } = useSelector(state => state.staff); 
- console.log('staff in dashoard,',staff)
   
   useEffect(() => {
     dispatch(fetchDashboardData());

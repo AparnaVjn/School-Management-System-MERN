@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { addLibrarian } from '../../../slices/librarianSlice';
-import styles from './AddLibrarianForm.module.css'; 
+import styles from './AddLibrarianForm.module.css';
 
 const AddLibrarianForm = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ const AddLibrarianForm = () => {
   const dispatch = useDispatch();
   const { loading, error, librarians } = useSelector((state) => state.librarian);
 
-  // Handle form input changes
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -38,7 +38,6 @@ const AddLibrarianForm = () => {
     return errors;
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -59,17 +58,17 @@ const AddLibrarianForm = () => {
     }
   };
 
-  // Show success message when the librarian is successfully added
+
   useEffect(() => {
     if (librarians.length > 0 && !loading && !error) {
       setShowSuccessMessage(true);
       setTimeout(() => {
-        setShowSuccessMessage(false); // Hide the message after 3 seconds
+        setShowSuccessMessage(false);
       }, 3000);
     }
   }, [librarians, loading, error]);
 
-  // Handle cancel button click - Clear form
+
   const handleCancel = () => {
     setFormData({
       librarianName: '',
@@ -85,6 +84,12 @@ const AddLibrarianForm = () => {
       <div className={styles.formContainer}>
         <h2 className={styles.heading}>Add New Librarian</h2>
 
+        {/* Success Message */}
+        {showSuccessMessage && (
+          <Alert variant="success" className="mt-3">
+            Librarian added successfully!
+          </Alert>
+        )}
         <Form validated={validated} onSubmit={handleSubmit} className={styles.form}>
           <Form.Group controlId="formName">
             <Form.Label>Name</Form.Label>
@@ -161,12 +166,7 @@ const AddLibrarianForm = () => {
             </Alert>
           )}
 
-          {/* Success Message */}
-          {showSuccessMessage && (
-            <Alert variant="success" className="mt-3">
-              Librarian added successfully!
-            </Alert>
-          )}
+
         </Form>
       </div>
     </div>

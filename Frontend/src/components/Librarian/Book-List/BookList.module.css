@@ -1,9 +1,50 @@
 .bookList {
-    padding: 20px;
-    background-color: #f7cf8f;
+  padding: 20px;
+  background-color: #f7cf8f;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .bookList {
+      padding: 10px;
   }
-  
+
   .table {
-    margin-top: 20px;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
   }
-  
+
+  th, td {
+      font-size: 0.9em;
+      padding: 8px;
+  }
+
+  .table th, .table td {
+      white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookList h2 {
+      font-size: 1.5em;
+  }
+
+  .table {
+      margin-top: 10px;
+  }
+
+  .table th, .table td {
+      padding: 6px;
+  }
+
+
+  .modal-content {
+      width: 90%;
+      margin: auto;
+  }
+}

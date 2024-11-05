@@ -27,13 +27,11 @@ const AddBook = () => {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     } else {
-      // Dispatch the action to add the book
-      console.log('book data:',formData)
       dispatch(addBook(formData))
         .unwrap()
         .then(() => {
-          setSuccess(true); // Show success message
-          clearForm(); // Reset form after successful submission
+          setSuccess(true); 
+          clearForm();
         })
         .catch((error) => console.error('Failed to add book', error));
     }

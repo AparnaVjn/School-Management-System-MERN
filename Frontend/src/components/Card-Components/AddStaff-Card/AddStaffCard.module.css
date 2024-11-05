@@ -35,16 +35,16 @@
     color: #cd8107;
   }
   
-  /* Make the card responsive */
+  /*  responsive card*/
   @media (min-width: 576px) {
     .cardWrapper {
-      flex-basis: 50%; /* Two cards per row */
+      flex-basis: 50%; 
     }
   }
   
   @media (max-width: 575px) {
     .cardWrapper {
-      flex-basis: 100%; /* One card per row for small screens */
+      flex-basis: 100%; 
     }
   }
   

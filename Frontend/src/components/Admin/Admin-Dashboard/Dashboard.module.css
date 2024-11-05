@@ -1,18 +1,50 @@
-/* Dashboard.module.css */
 .dashboardContainer {
-    padding: 20px;
-    background-color: #f7cf8f;
-    height:85vh
+  padding: 20px;
+  background-color: #f7cf8f;
+  height: auto; 
+}
+
+.chartContainer {
+  padding: 20px;
+}
+
+.card {
+  background-color: #f8f9fa;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 10px;
   }
-  
+
   .chartContainer {
-    padding: 20px;
-  
-    
+    padding: 10px;
   }
-  
+
   .card {
-    background-color: #f8f9fa;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
   }
   
+  .chartContainer h5 {
+    font-size: 16px; 
+  }
+
+  .chartContainer div {
+    height: 250px; 
+  }
+}
+
+@media (max-width: 576px) {
+  .chartContainer div {
+    height: 200px; 
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card-title, .card-text {
+    font-size: 14px; 
+  }
+}

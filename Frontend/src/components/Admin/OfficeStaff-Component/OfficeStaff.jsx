@@ -11,13 +11,11 @@ const OfficeStaff = () => {
   const [isAddingStaff, setIsAddingStaff] = useState(false); 
   const [isViewingStaff, setIsViewingStaff] = useState(false); 
 
-  // Function to handle when the AddStaffCard is clicked
   const handleAddStaffClick = () => {
     setIsAddingStaff(true); 
     setIsViewingStaff(false); 
   };
 
-  // Function to handle when the StaffListCard is clicked
   const handleStaffListClick = () => {
     setIsViewingStaff(true); 
     setIsAddingStaff(false); 
@@ -38,7 +36,7 @@ const OfficeStaff = () => {
           </Col>
         </Row>
       ) : (
-        // Default view showing both cards
+
         <Row className="justify-content-center">
           <Col md={5} className={styles.cardCol}>
               <AddStaffCard onClick={handleAddStaffClick}/>

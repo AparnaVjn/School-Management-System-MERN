@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import styles from './AddStudentCard.module.css'; 
 
-const AddStudentCard = ({ onClick }) => {  // Receiving the onClick as prop
+const AddStudentCard = ({ onClick }) => {  
   return (
-    <div className={styles.cardWrapper} onClick={onClick}>  {/* onClick event on div */}
+    <div className={styles.cardWrapper} onClick={onClick}>  
       <Card className={styles.addCard}>
         <Card.Body className="text-center">
           <FontAwesomeIcon icon={faPlus} size="3x" className={styles.icon} />

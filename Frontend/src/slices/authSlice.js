@@ -9,10 +9,7 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiurl}/login`, credentials, { withCredentials: true });
-      console.log('response after login:', response);
-
-      
+      const response = await axios.post(`${apiurl}/login`, credentials, { withCredentials: true });      
       if (response.data.message === 'Login successful') {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data; 

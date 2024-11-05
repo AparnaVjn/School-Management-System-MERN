@@ -1,23 +1,49 @@
-.studentListContainer {
+
+
+  .studentListContainer {
     padding: 20px;
     background-color: #f7cf8f;
   }
   
-  .heading {
+  .responsiveContainer h2 {
+    font-size: 1rem;
     text-align: center;
-    margin-bottom: 20px;
   }
   
-  .studentCard {
-    cursor: pointer;
-    margin-bottom: 10px;
+  .table-responsive {
+    margin-top: 1rem;
   }
   
-  .card {
-    height: 60px;
+  @media (max-width: 768px) {
+    .studentListContainer {
+      padding: 0.5rem;
+    }
+  
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .responsiveContainer h2 {
+      font-size: 1.25rem;
+    }
   }
   
-  .searchContainer {
-    margin-bottom: 20px;
+  @media (max-width: 480px) {
+    .studentListContainer {
+      padding: 0.5rem;
+    }
+  
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .responsiveContainer h2 {
+      font-size: 1rem;
+    }
+  
+    td, th {
+      font-size: 0.85rem;
+    }
   }
+  
   

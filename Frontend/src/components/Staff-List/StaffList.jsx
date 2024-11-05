@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStaffList, editStaffInDB, deleteStaffFromDB } from '../../slices/staffSlice';
+import styles from './StaffList.module.css';
 
 function StaffList() {
   const dispatch = useDispatch();
   const { staff, loading, error } = useSelector(state => state.staff);
-  
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchStaffList()); // Fetch staff data from the backend
+    dispatch(fetchStaffList());
   }, [dispatch]);
 
   const handleEditClick = (staff) => {
@@ -26,13 +27,11 @@ function StaffList() {
   };
 
   const handleEditSubmit = () => {
-    // Call action to edit staff
     dispatch(editStaffInDB(selectedStaff));
     setShowEditModal(false);
   };
 
   const handleDeleteConfirm = () => {
-    // Call action to delete staff
     dispatch(deleteStaffFromDB(selectedStaff.staffId));
     setShowDeleteModal(false);
   };
@@ -41,9 +40,9 @@ function StaffList() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h2>Staff List</h2>
-      <Table striped bordered hover>
+    <Container fluid className={styles.staffListContainer}>
+      <h2 className={styles.title}>Staff List</h2>
+      <Table striped bordered hover responsive className={styles.table}>
         <thead>
           <tr>
             <th>Staff Name</th>
@@ -111,7 +110,7 @@ function StaffList() {
           <Button variant="danger" onClick={handleDeleteConfirm}>Delete</Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 }
 

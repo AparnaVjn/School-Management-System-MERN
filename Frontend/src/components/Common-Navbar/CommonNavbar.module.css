@@ -1,6 +1,9 @@
 
 .customNavbar {
-  background-color: #ffdab9;
+  position: fixed;
+      top: 0;
+      z-index: 1030;
+      width: 84%;
 }
 .userLogo {
     width: 30px; 
@@ -21,6 +24,14 @@
   
     .userInfo {
       font-size: 0.8rem; 
+    }
+
+    .customNavbar {
+      width: 100%;
+    }
+
+    .userLogo {
+      margin-left: 30px;
     }
   }
   

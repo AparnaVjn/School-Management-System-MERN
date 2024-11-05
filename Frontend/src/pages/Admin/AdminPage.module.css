@@ -1,28 +1,31 @@
-
 .menuIcon {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 10;
-    cursor: pointer;
-  }
-  
-  .sidebar {
+  top: 20px;
+  z-index: 1050;
+  cursor: pointer;
+  color: #333;
+  display: block;
+}
+
+.mainContent {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+
+.show {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .menuIcon {
     display: none;
   }
-  
-  .show {
-    display: block;
-  }
-  
+
  
-  @media (min-width: 992px) {
-    .menuIcon {
-      display: none;
-    }
-  
-    .sidebar {
-      display: block;
-    }
+}
+
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
   }
-  
+}

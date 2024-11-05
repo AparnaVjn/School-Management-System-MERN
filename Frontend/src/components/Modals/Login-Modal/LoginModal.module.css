@@ -1,8 +1,8 @@
 .customModal {
     background-color: transparent !important;
     border: none;
-    max-width: 90%; /* Set a max width for the modal */
-    margin: 0 auto; /* Center the modal */
+    max-width: 90%; 
+    margin: 0 auto; 
 }
 
 .modalBody {
@@ -15,17 +15,17 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: auto; /* Allow height to adjust based on content */
+    height: auto; 
 }
 
 .leftSection {
-    flex: 1; /* Make the left section flexible */
+    flex: 1; 
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
 }
 
 .rightSection {
-    flex: 2; /* Make the right section larger */
+    flex: 2; 
     background-color: #333;
     color: white;
     padding: 20px;
@@ -40,37 +40,37 @@
     background-color: #f48540;
     color: white;
     border: none;
-    width: 100%; /* Full width button */
-    padding: 10px; /* Add padding for better touch targets */
+    width: 100%; 
+    padding: 10px; 
 }
 
 .customButton:hover {
     background-color: #f89e66;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 1200px) {
     .modalContentWrapper {
-        flex-direction: column; /* Stack sections vertically on medium screens */
+        flex-direction: column; 
     }
 
     .leftSection,
     .rightSection {
-        width: 100%; /* Full width on medium screens */
+        width: 100%; 
     }
 }
 
 @media (max-width: 768px) {
     .customModal {
-        max-width: 95%; /* Adjust max width for smaller screens */
+        max-width: 95%; 
     }
     
     .leftSection {
-        margin-bottom: 20px; /* Space between sections */
+        margin-bottom: 20px; 
     }
     
     .rightSection {
-        padding: 15px; /* Adjust padding for smaller screens */
+        padding: 15px; 
     }
 
     .rightSection h2,
@@ -81,21 +81,21 @@
 
 @media (max-width: 576px) {
     .customModal {
-        max-width: 100%; /* Full width for extra small screens */
-        padding: 0 10px; /* Add consistent padding on left and right */
+        max-width: 100%; 
+        padding: 0 10px; 
     }
     
     .leftSection,
     .rightSection {
-        padding: 10px; /* Further reduce padding for extra small screens */
+        padding: 10px; 
     }
 
     .modalBody {
-        flex-direction: column; /* Stack sections vertically on very small screens */
+        flex-direction: column; 
     }
 
     .rightSection h2,
     .leftSection h2 {
-        font-size: 1.2em; /* Adjust font size for better visibility */
+        font-size: 1.2em; 
     }
 }

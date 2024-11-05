@@ -1,18 +1,18 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import styles from './CommonNavbar.module.css'; 
-import userIcon from '../../assets/userIcon.png'
+import styles from './CommonNavbar.module.css';
+import userIcon from '../../assets/userIcon.png';
 
 const CommonNavbar = () => {
-  // Access user state from Redux store
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <Navbar bg="light" className="justify-content-between p-3 ">
-      <Navbar.Brand>Welcome Back 👋</Navbar.Brand>
-      
-      {/* User Info Section */}
+    <Navbar bg="light" className={`${styles.customNavbar} justify-content-between p-3`}>
+      <Navbar.Brand className="d-none d-lg-block"> 
+        Welcome Back 👋
+      </Navbar.Brand>
+
       <Nav className="ml-auto d-flex align-items-center">
         {user && (
           <>

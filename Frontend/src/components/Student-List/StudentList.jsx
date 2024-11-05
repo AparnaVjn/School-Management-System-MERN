@@ -5,8 +5,6 @@ import { fetchStudents } from '../../slices/studentSlice';
 import StudentDetailsModal from '../Modals/StudentDetails-Modal/StudentDetailsModal';
 import styles from './StudentList.module.css';
 
-
-
 const StudentList = () => {
   const dispatch = useDispatch();
   const { students, loading, error } = useSelector((state) => state.students);
@@ -22,13 +20,11 @@ const StudentList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('students:',students)  
     if (students.length > 0) {
       setVisibleStudents(students.slice(0, studentsPerPage));
     }
   }, [students]);
 
-  
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
@@ -66,52 +62,53 @@ const StudentList = () => {
   }
 
   return (
-    <div  className={styles.studentListContainer}>
+    <div className={`${styles.studentListContainer} ${styles.responsiveContainer}`}>
       <div>
-      <h2>Student List</h2>
+        <h2>Student List</h2>
       </div>
       
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>SL No.</th> {/* Serial number column */}
-            <th>Student Name</th>
-            <th>Class</th>
-            <th>Division</th>
-            <th>Payment Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visibleStudents.map((student, index) => (
-            <tr key={student._id}>
-              <td>{index + 1}</td> {/* Serial number (1-based index) */}
-              <td>
-                <Button
-                  variant="link"
-                  onClick={() => handleStudentClick(student)}
-                  style={{ textDecoration: 'none' }} // Removes underline
-                >
-                  {student.studentName}
-                </Button>
-              </td>
-              <td>{student.className}</td>
-              <td>{student.division}</td>
-              <td>
-                {student.paymentStatus === 'paid' && <span className="text-success">Paid</span>}
-                {student.paymentStatus === 'partially paid' && <span className="text-warning">Partially Paid</span>}
-                {student.paymentStatus === 'not paid' && <span className="text-danger">Not Paid</span>}
-              </td>
+      <div className="table-responsive"> 
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>SL No.</th> 
+              <th>Student Name</th>
+              <th>Class</th>
+              <th>Division</th>
+              <th>Payment Status</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {visibleStudents.map((student, index) => (
+              <tr key={student._id}>
+                <td>{index + 1}</td> 
+                <td>
+                  <Button
+                    variant="link"
+                    onClick={() => handleStudentClick(student)}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    {student.studentName}
+                  </Button>
+                </td>
+                <td>{student.className}</td>
+                <td>{student.division}</td>
+                <td>
+                  {student.paymentStatus === 'Paid' && <span className="text-success">Paid</span>}
+                  {student.paymentStatus === 'Partial' && <span className="text-warning">Partially Paid</span>}
+                  {student.paymentStatus === 'Pending' && <span className="text-danger">Not Paid</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
-      {/* Show student details in a modal */}
       {selectedStudent && (
         <StudentDetailsModal
-        student={selectedStudent}
-        show={showModal}
-        onClose={handleCloseModal}
+          student={selectedStudent}
+          show={showModal}
+          onClose={handleCloseModal}
         />
       )}
     </div>

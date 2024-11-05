@@ -6,7 +6,7 @@ import Student from '../../components/Admin/Student-Component/Student';
 import Fees from '../../components/Admin/Fee-Component/Fees';
 import SideBar from '../../components/Admin/SideBar/SideBar';
 import CommonNavbar from '../../components/Common-Navbar/CommonNavbar';
-import styles from './AdminPage.module.css'; 
+import styles from './AdminPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AddLibrarianForm from '../../components/Form-components/AddLibrarian-Form/AddLibrarianForm';
@@ -14,7 +14,7 @@ import BookList from '../../components/Librarian/Book-List/BookList';
 
 const AdminPage = () => {
   const selectedComponent = useSelector((state) => state.admin.selectedComponent);
-  const [sidebarVisible, setSidebarVisible] = useState(false); 
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const renderContent = () => {
     switch (selectedComponent) {
@@ -25,9 +25,9 @@ const AdminPage = () => {
       case 'students':
         return <Student />;
       case 'library':
-        return <AddLibrarianForm/>;
+        return <AddLibrarianForm />;
       case 'library-Data':
-        return <BookList/>
+        return <BookList />;
       case 'fee':
         return <Fees />;
       default:
@@ -41,22 +41,32 @@ const AdminPage = () => {
 
   return (
     <div className="d-flex">
-      <div className={`${styles.menuIcon} d-lg-none`} onClick={toggleSidebar}>
+      <div className={`${styles.menuIcon} d-lg-none`} onClick={toggleSidebar}  style={{
+          position: 'fixed',
+          left: sidebarVisible ? '220px' : '15px', 
+          transition: 'left 0.3s ease',
+        }}>
         <FontAwesomeIcon icon={faBars} size="2x" />
-      </div>      
-      <div
-        className={`${styles.sidebar} ${sidebarVisible ? styles.show : ''} bg-light sidebar`}
-        style={{ width: '250px', position: 'fixed', height: '100%', zIndex: 1 }}
-      >
-        <SideBar />
       </div>
 
-      <div className="flex-grow-1 d-flex flex-column" style={{ marginLeft: '250px' }}>
-        <div className="fixed-top" style={{ marginLeft: '250px' }}>
-          <CommonNavbar />
-        </div>
 
-        <div className="container-fluid content-area mt-5 pt-4">
+      <SideBar sidebarVisible={sidebarVisible} toggleSidebar={toggleSidebar} />
+
+      <div
+        className={`${styles.mainContent} flex-grow-1 d-flex flex-column`}
+        style={{
+          transition: 'margin 0.3s ease-in-out',
+          width: sidebarVisible ? 'calc(100% - 250px)' : '100%',
+          overflowX: 'hidden',
+        }}
+      >
+        
+        <CommonNavbar /> 
+
+        <div className="container-fluid content-area" 
+        style={{
+          marginTop: '70px'
+        }}>
           <div className="p-3 bg-white shadow rounded">
             {renderContent()}
           </div>

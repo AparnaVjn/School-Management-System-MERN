@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchStudents } from '../../slices/studentSlice'; // Adjust the path if needed
+import { fetchStudents } from '../../slices/studentSlice'; 
 import { Table, Spinner } from 'react-bootstrap';
-import styles from './PaymentHistory.module.css'; // Importing CSS module
+import styles from './PaymentHistory.module.css'; 
 
 const PaymentHistory = () => {
   const dispatch = useDispatch();
   const { students, loading, error } = useSelector((state) => state.students);
 
   useEffect(() => {
-    // Fetch students when the component mounts
     dispatch(fetchStudents());
   }, [dispatch]);
 
@@ -20,8 +19,8 @@ const PaymentHistory = () => {
       {loading && <Spinner animation="border" />}
 
       {error && <p className={styles.error}>Error: {error}</p>}
-
-      <Table striped bordered hover className={styles.table}>
+      <div className="table-responsive"> 
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Student Name</th>
@@ -50,6 +49,7 @@ const PaymentHistory = () => {
             )}
         </tbody>
       </Table>
+      </div>
     </div>
   );
 };

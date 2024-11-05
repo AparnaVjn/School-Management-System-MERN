@@ -28,7 +28,6 @@ export const addBook = createAsyncThunk(
   'librarians/addBook',
   async (bookData, { rejectWithValue }) => {
     try {
-      console.log('book data in thunk',bookData)
       const response = await axios.post(`${apiurl}/addbooks`, bookData);
       return response.data;
     } catch (error) {
@@ -43,7 +42,6 @@ export const fetchBooks = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${apiurl}/books`); 
-      console.log('book data:',response.data)
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -171,7 +169,7 @@ const librarianSlice = createSlice({
         state.loading = false;
         const index = state.books.findIndex((book) => book._id === action.payload.book._id);
         if (index !== -1) {
-          state.books[index] = action.payload.book;  // Update the book in the state
+          state.books[index] = action.payload.book;  
         }
       })
       .addCase(editBook.rejected, (state, action) => {
@@ -186,7 +184,7 @@ const librarianSlice = createSlice({
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
         state.loading = false;
-        state.books = state.books.filter((book) => book._id !== action.payload);  // Remove the deleted book from the state
+        state.books = state.books.filter((book) => book._id !== action.payload);  
       })
       .addCase(deleteBook.rejected, (state, action) => {
         state.loading = false;

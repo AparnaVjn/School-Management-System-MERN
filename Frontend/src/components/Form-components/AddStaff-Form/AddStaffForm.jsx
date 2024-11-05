@@ -7,19 +7,19 @@ import OfficeStaff from '../../Admin/OfficeStaff-Component/OfficeStaff';
 
 const AddStaffForm = () => {
   const dispatch = useDispatch();
-  const [showForm, setShowForm] = useState(true); 
+  const [showForm, setShowForm] = useState(true);
   const [formData, setFormData] = useState({
     staffName: '',
     designation: '',
     staffId: '',
     phoneNumber: '',
     email: '',
-    password: '', 
+    password: '',
   });
 
   const [errors, setErrors] = useState({});
   const [validated, setValidated] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState(null); // Add this
+  const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const validate = () => {
     const errors = {};
@@ -44,36 +44,50 @@ const AddStaffForm = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await dispatch(addStaffToDB(formData)).unwrap(); 
-        setSubmissionStatus('success'); 
+        await dispatch(addStaffToDB(formData)).unwrap();
+        setSubmissionStatus('success');
       } catch (error) {
-        setSubmissionStatus('error'); 
+        setSubmissionStatus('error');
       }
 
-      
+
       setFormData({
         staffName: '',
         designation: '',
         staffId: '',
         phoneNumber: '',
         email: '',
-        password: '', 
+        password: '',
       });
       setValidated(false);
     }
   };
 
   const handleCancel = () => {
-    setShowForm(false); 
+    setShowForm(false);
   };
+  
 
   return (
     <>
       {showForm ? (
         <>
+
+          {/* success or error message */}
+          {submissionStatus === 'success' && (
+            <Alert variant="success" className="mt-3">
+              Staff added successfully!
+            </Alert>
+          )}
+          {submissionStatus === 'error' && (
+            <Alert variant="danger" className="mt-3">
+              There was an error adding the staff. Please try again.
+            </Alert>
+          )}
+
           <Form className={styles.form} validated={validated} onSubmit={handleSubmit}>
             <h3 className={styles.heading}>Add Staff</h3>
-            
+
             <Row className={styles.formRow}>
               <Col>
                 <Form.Group controlId="staffName">
@@ -203,17 +217,7 @@ const AddStaffForm = () => {
             )}
           </Form>
 
-          {/* Show success or error message */}
-          {submissionStatus === 'success' && (
-            <Alert variant="success" className="mt-3">
-              Staff added successfully!
-            </Alert>
-          )}
-          {submissionStatus === 'error' && (
-            <Alert variant="danger" className="mt-3">
-              There was an error adding the staff. Please try again.
-            </Alert>
-          )}
+
         </>
       ) : (
         <OfficeStaff />

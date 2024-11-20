@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Button, Col, Alert, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { addStaffToDB } from '../../../slices/staffSlice';
 import styles from './AddStaffForm.module.css';
 import OfficeStaff from '../../Admin/OfficeStaff-Component/OfficeStaff';
@@ -50,7 +52,6 @@ const AddStaffForm = () => {
         setSubmissionStatus('error');
       }
 
-
       setFormData({
         staffName: '',
         designation: '',
@@ -63,17 +64,19 @@ const AddStaffForm = () => {
     }
   };
 
-  const handleCancel = () => {
+  const handleBack = () => {
     setShowForm(false);
   };
-  
 
   return (
     <>
       {showForm ? (
         <>
+          <div className={styles.backButton} onClick={handleBack}>
+            <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} /> Back
+          </div>
 
-          {/* success or error message */}
+          {/* Success or error message */}
           {submissionStatus === 'success' && (
             <Alert variant="success" className="mt-3">
               Staff added successfully!
@@ -202,7 +205,7 @@ const AddStaffForm = () => {
             </Row>
 
             <div className={styles.buttonGroup}>
-              <Button className={styles.submitButton} onClick={handleCancel}>
+              <Button className={styles.submitButton} onClick={handleBack}>
                 Cancel
               </Button>
               <Button className={styles.cancelButton} type="submit">
@@ -216,8 +219,6 @@ const AddStaffForm = () => {
               </Alert>
             )}
           </Form>
-
-
         </>
       ) : (
         <OfficeStaff />

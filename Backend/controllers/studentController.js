@@ -81,3 +81,25 @@ export const addStudentPayment = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+
+// controllers/studentController.js
+export const updateStudent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedStudent = await Student.findByIdAndUpdate(id, req.body, { new: true });
+    res.status(200).json(updatedStudent);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating student' });
+  }
+};
+
+export const deleteStudent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Student.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Student deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting student' });
+  }
+};

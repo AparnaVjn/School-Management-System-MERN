@@ -48,6 +48,17 @@ export const fetchStudents = createAsyncThunk(
   }
 );
 
+export const updateStudent = createAsyncThunk('students/updateStudent', async (studentData) => {
+  const response = await axios.put(`${apiurl}/students/${studentData._id}`, studentData);
+  return response.data;
+});
+
+export const deleteStudent = createAsyncThunk('students/deleteStudent', async (studentId) => {
+  await axios.delete(`${apiurl}/students/${studentId}`);
+  return studentId;
+});
+
+
 const studentSlice = createSlice({
   name: 'students',
   initialState,
@@ -102,6 +113,13 @@ const studentSlice = createSlice({
       .addCase(addStudentPayment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(updateStudent.fulfilled, (state, action) => {
+        const index = state.students.findIndex((s) => s._id === action.payload._id);
+        if (index !== -1) state.students[index] = action.payload;
+      })
+      .addCase(deleteStudent.fulfilled, (state, action) => {
+        state.students = state.students.filter((s) => s._id !== action.payload);
       });
   },
 });

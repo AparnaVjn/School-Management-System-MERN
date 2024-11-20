@@ -1,5 +1,5 @@
 import express from 'express';
-import { addStudent, getStudents, addStudentPayment } from '../controllers/studentController.js';
+import { addStudent, getStudents, addStudentPayment, updateStudent, deleteStudent } from '../controllers/studentController.js';
 
 const router = express.Router();
 
@@ -11,5 +11,9 @@ router.get('/students', getStudents);
 
 // Route to add student payment
 router.post('/students/addPayment/:admissionNo', addStudentPayment);
+
+router.put('/students/:id', updateStudent);
+
+router.delete('/students/:id', deleteStudent);
 
 export default router;

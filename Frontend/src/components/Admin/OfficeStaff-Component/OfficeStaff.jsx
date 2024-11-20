@@ -22,7 +22,7 @@ const OfficeStaff = () => {
   };
 
   return (
-    <Container className={styles.staffContainer}>
+    <Container className={`${styles.staffContainer} p-0`}>
       {isAddingStaff ? (
         <Row className="justify-content-center">
           <Col md={12} className={styles.fullWidthCol}>

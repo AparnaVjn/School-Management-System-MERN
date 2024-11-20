@@ -1,4 +1,14 @@
+.backButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
 
+.icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
 
   .studentListContainer {
     padding: 20px;

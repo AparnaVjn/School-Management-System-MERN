@@ -24,7 +24,7 @@ const Student = () => {
   };
 
   return (
-    <Container className={styles.studentContainer}>
+    <Container className={`${styles.studentContainer} p-0`}>
       {isAddingStudent ? (
         <Row className="justify-content-center">
           <Col md={12} className={styles.fullWidthCol}>

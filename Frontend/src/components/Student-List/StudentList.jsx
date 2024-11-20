@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal } from 'react-bootstrap';
+import { Table, Button, Modal, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStudents, deleteStudent } from '../../slices/studentSlice';
 import StudentDetailsModal from '../Modals/StudentDetails-Modal/StudentDetailsModal';
 import styles from './StudentList.module.css';
 import EditStudentModal from '../Modals/EditStudent-Modal/EditStudentModal';
+import Student from '../Admin/Student-Component/Student';
 
 const StudentList = () => {
   const dispatch = useDispatch();
@@ -16,6 +19,7 @@ const StudentList = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState(null);
+  const [showTable, setShowTable] = useState(true);
 
   const studentsPerPage = 20;
 
@@ -71,11 +75,20 @@ const StudentList = () => {
     setStudentToDelete(null);
   };
 
+  const handleBack = () => {
+    setShowTable(false);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className={`${styles.studentListContainer} ${styles.responsiveContainer}`}>
+    <>
+    { showTable ? (
+    <Container fluid className={`${styles.studentListContainer} ${styles.responsiveContainer}`}>
+      <div className={styles.backButton} onClick={handleBack}>
+            <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} /> Back
+      </div>
       <h2>Student List</h2>
       <div className="table-responsive">
         <Table striped bordered hover>
@@ -139,7 +152,11 @@ const StudentList = () => {
           </Button>
         </Modal.Footer>
       </Modal>  
-    </div>
+    </Container>
+    ) : (
+      <Student/>
+    )}
+    </>
   );
 };
 

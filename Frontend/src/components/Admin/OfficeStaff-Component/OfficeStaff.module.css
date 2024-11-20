@@ -1,7 +1,13 @@
 .staffContainer {
     padding: 20px;
     background-color: #f7cf8f;
+    justify-content: center; /* Align vertically */
+    align-items: center; 
   
+  }
+
+  .fullWidthCol {
+    width: 100%; /* Ensure all components occupy the same width */
   }
   
   .cardCol {

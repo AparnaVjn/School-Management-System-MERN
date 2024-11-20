@@ -68,6 +68,17 @@ const AddStaffForm = () => {
     setShowForm(false);
   };
 
+  const handleCancel = () => {
+    setFormData({
+      staffName: '',
+      designation: '',
+      staffId: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+    });
+  }
+
   return (
     <>
       {showForm ? (
@@ -205,7 +216,7 @@ const AddStaffForm = () => {
             </Row>
 
             <div className={styles.buttonGroup}>
-              <Button className={styles.submitButton} onClick={handleBack}>
+              <Button className={styles.submitButton} onClick={handleCancel}>
                 Cancel
               </Button>
               <Button className={styles.cancelButton} type="submit">

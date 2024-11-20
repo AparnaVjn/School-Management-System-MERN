@@ -152,7 +152,7 @@ const AddLibrarianForm = () => {
           </Form.Group>
 
           <div className={styles.buttonGroup}>
-            <Button variant="secondary" onClick={handleCancel} className={styles.cancelButton}>
+            <Button variant="primary" onClick={handleCancel} className={styles.cancelButton}>
               Cancel
             </Button>
             <Button type="submit" variant="primary" className={styles.submitButton}>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Col, Alert, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addStudent } from '../../../slices/studentSlice';
 import styles from './AddStudentForm.module.css';
@@ -63,13 +65,27 @@ const AddStudentForm = () => {
   }, [loading, backendError, validated]);
 
 
-  const handleCancel = () => {
+  const handleBack = () => {
     setShowForm(false); 
   };
+
+  const handleCancel = () => {
+    setFormData({
+      studentName: '',
+      admissionNo: '',
+      className: '',
+      division: '',
+      gender: '',
+    });
+  }
 
   return (
     <>
       {showForm ? (
+        <>
+         <div className={styles.backButton} onClick={handleBack}>
+         <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} /> Back
+       </div>
         <Form className={styles.form} validated={validated} onSubmit={handleSubmit}>
           <h3 className={styles.heading}>Add Student</h3>
           
@@ -205,6 +221,7 @@ const AddStudentForm = () => {
             </Alert>
           )}
         </Form>
+        </>
       ) : (
         <Student />
       )}

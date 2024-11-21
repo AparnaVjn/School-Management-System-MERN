@@ -4,13 +4,14 @@ import styles from './StaffPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import DashBoard from '../../components/Office-Staff/DashBoard/DashBoard';
-import StudentList from '../../components/Student-List/StudentList';
+// import StudentList from '../../components/Student-List/StudentList';
 import MakePayment from '../../components/Office-Staff/Make-Payment/MakePayment';
 import PaymentHistory from '../../components/Payment-History/PaymentHistory';
 import SideBar from '../../components/Office-Staff/SideBar/SideBar';
 import CommonNavbar from '../../components/Common-Navbar/CommonNavbar';
 import AddStudents from '../../components/Office-Staff/AddStudents/AddStudents';
 import BookList from '../../components/Librarian/Book-List/BookList';
+import StudentList from '../../components/Office-Staff/Students-List/StudentsList';
 
 const StaffPage = () => {
   const selectedComponent = useSelector((state) => state.staff.selectedComponent);

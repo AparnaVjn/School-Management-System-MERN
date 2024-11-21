@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileInvoiceDollar, faMoneyCheckAlt, faHourglassHalf, faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faFileInvoiceDollar, faMoneyCheckAlt, faHistory } from '@fortawesome/free-solid-svg-icons';
 import styles from './Fees.module.css';
 import FeeTypes from '../FeeTypes/FeeTypes';
 import TotalFeeCollected from '../../Collected-Fee/TotalFeeCollected';
-import PendingFee from '../../Pending-Fess/PendingFee';
 import PaymentHistory from '../../Payment-History/PaymentHistory';
 
 const Fees = () => {
@@ -14,13 +13,11 @@ const Fees = () => {
   const renderContent = () => {
     switch (activeCard) {
       case 'feeTypes':
-        return <FeeTypes/>;
+        return <FeeTypes />;
       case 'totalFeeCollected':
-        return <TotalFeeCollected/>;
-      case 'pendingFee':
-        return <PendingFee/>;
+        return <TotalFeeCollected />;
       case 'paymentHistory':
-        return <PaymentHistory/>;
+        return <PaymentHistory />;
       default:
         return <FeeTypes />;
     }
@@ -29,7 +26,7 @@ const Fees = () => {
   return (
     <div className={styles.container}>
       <Row className="mb-4">
-        <Col md={3}>
+        <Col md={4}>
           <Card
             onClick={() => setActiveCard('feeTypes')}
             className={`${styles.card} ${activeCard === 'feeTypes' && styles.activeCard}`}
@@ -41,7 +38,7 @@ const Fees = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <Card
             onClick={() => setActiveCard('totalFeeCollected')}
             className={`${styles.card} ${activeCard === 'totalFeeCollected' && styles.activeCard}`}
@@ -53,19 +50,7 @@ const Fees = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={3}>
-          <Card
-            onClick={() => setActiveCard('pendingFee')}
-            className={`${styles.card} ${activeCard === 'pendingFee' && styles.activeCard}`}
-            style={{ backgroundColor: '#e74c3c' }}
-          >
-            <Card.Body className="text-center">
-              <FontAwesomeIcon icon={faHourglassHalf} size="2x" />
-              <Card.Title>Pending Fee</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3}>
+        <Col md={4}>
           <Card
             onClick={() => setActiveCard('paymentHistory')}
             className={`${styles.card} ${activeCard === 'paymentHistory' && styles.activeCard}`}

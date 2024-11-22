@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileInvoiceDollar, faMoneyCheckAlt, faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faFileInvoiceDollar, faHistory } from '@fortawesome/free-solid-svg-icons';
 import styles from './Fees.module.css';
 import FeeTypes from '../FeeTypes/FeeTypes';
-import TotalFeeCollected from '../../Collected-Fee/TotalFeeCollected';
 import PaymentHistory from '../../Payment-History/PaymentHistory';
 
 const Fees = () => {
@@ -14,8 +13,6 @@ const Fees = () => {
     switch (activeCard) {
       case 'feeTypes':
         return <FeeTypes />;
-      case 'totalFeeCollected':
-        return <TotalFeeCollected />;
       case 'paymentHistory':
         return <PaymentHistory />;
       default:
@@ -26,7 +23,7 @@ const Fees = () => {
   return (
     <div className={styles.container}>
       <Row className="mb-4">
-        <Col md={4}>
+        <Col md={6}>
           <Card
             onClick={() => setActiveCard('feeTypes')}
             className={`${styles.card} ${activeCard === 'feeTypes' && styles.activeCard}`}
@@ -38,19 +35,7 @@ const Fees = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={4}>
-          <Card
-            onClick={() => setActiveCard('totalFeeCollected')}
-            className={`${styles.card} ${activeCard === 'totalFeeCollected' && styles.activeCard}`}
-            style={{ backgroundColor: '#27ae60' }}
-          >
-            <Card.Body className="text-center">
-              <FontAwesomeIcon icon={faMoneyCheckAlt} size="2x" />
-              <Card.Title>Total Fee Collected</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4}>
+        <Col md={6}>
           <Card
             onClick={() => setActiveCard('paymentHistory')}
             className={`${styles.card} ${activeCard === 'paymentHistory' && styles.activeCard}`}

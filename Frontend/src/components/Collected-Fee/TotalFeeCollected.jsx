@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Container, Row, Col, Card, Spinner, Alert } from 'react-bootstrap';
+import { Accordion, Container, Row, Col, Card, Spinner, Alert } from 'react-bootstrap';
 import { fetchStudents } from '../../slices/studentSlice';
 import { fetchFeeTypes } from '../../slices/feeTypesSlice';
-import styles from './TotalFeeCollected.module.css'; // Import the module CSS
+import styles from './TotalFeeCollected.module.css';
 
 function TotalFeeCollected() {
   const dispatch = useDispatch();
@@ -27,32 +27,45 @@ function TotalFeeCollected() {
     0
   );
 
-  // Simulate previous month's fee collection (can be replaced with real data)
-  const previousMonthFeeCollected = totalFeeCollected * 0.9; // Assume 10% less last month
+  // Simulate previous month's fee collection
+  const previousMonthFeeCollected = totalFeeCollected * 0.9;
   const feeIncrement = ((totalFeeCollected - previousMonthFeeCollected) / previousMonthFeeCollected) * 100;
 
-  // Aggregate fee data per class and category
+  // Aggregate fee data by class and feeType
   const feeData = {};
   students.forEach((student) => {
     const className = student.className;
+
+    // Initialize class entry if not already present
     if (!feeData[className]) {
       feeData[className] = {};
-      feeTypes.forEach((fee) => {
-        feeData[className][fee.feeType] = { collected: 0, pending: 0 };
-      });
     }
-    student.paymentHistory.forEach((payment) => {
-      if (feeData[className][payment.feeType]) {
-        feeData[className][payment.feeType].collected += payment.amount || 0;
+
+    // Process each fee type
+    feeTypes.forEach((feeType) => {
+      const { feeType: type, feeAmount } = feeType;
+
+      // Initialize fee type entry for the class
+      if (!feeData[className][type]) {
+        feeData[className][type] = { collected: 0, pending: 0 };
       }
-    });
-    feeTypes.forEach((fee) => {
-      const pendingFee = fee.feeAmount - (feeData[className][fee.feeType]?.collected || 0);
-      if (feeData[className][fee.feeType]) {
-        feeData[className][fee.feeType].pending = pendingFee > 0 ? pendingFee : 0;
-      }
+
+      // Calculate total collected for this fee type
+      const collectedAmount = student.paymentHistory
+        .filter((payment) => payment.feeType === type)
+        .reduce((sum, payment) => sum + (payment.amount || 0), 0);
+
+  // Determine pending amount based on student's totalFees or feeAmount
+  const totalForType = feeAmount || student.totalFees;
+
+  // Update collected and pending amounts
+  feeData[className][type].collected += collectedAmount;
+  feeData[className][type].pending += Math.max(totalForType - collectedAmount, 0);
+
     });
   });
+
+
 
   return (
     <Container className="mt-4">
@@ -62,7 +75,7 @@ function TotalFeeCollected() {
             <Card.Body>
               <Card.Title>Total Fee Collected</Card.Title>
               <Card.Text className={styles.totalFee}>
-              ₹ {totalFeeCollected.toLocaleString()}
+                ₹ {totalFeeCollected.toLocaleString()}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -79,28 +92,23 @@ function TotalFeeCollected() {
         </Col>
       </Row>
 
-      <Table striped bordered hover className={`${styles.table} shadow`}>
-        <thead>
-          <tr>
-            <th>Class</th>
-            {feeTypes.map((fee) => (
-              <th key={fee.feeType}>{fee.feeType} (Collected / Pending)</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(feeData).map(([className, data]) => (
-            <tr key={className}>
-              <td>{className}</td>
-              {feeTypes.map((fee) => (
-                <td key={fee.feeType}>
-                  {data[fee.feeType].collected} / {data[fee.feeType].pending}
-                </td>
+            {/* Accordion for Class-wise Fee Details */}
+            <Accordion>
+        {Object.entries(feeData).map(([className, classFees], index) => (
+          <Accordion.Item eventKey={index} key={className}>
+            <Accordion.Header>{className}</Accordion.Header>
+            <Accordion.Body>
+              {Object.entries(classFees).map(([feeType, data]) => (
+                <div key={feeType} className="mb-2">
+                  <strong>{feeType}:</strong>
+                  <span className="text-success"> Collected: ₹{data.collected}</span> /
+                  <span className="text-danger"> Pending: ₹{data.pending}</span>
+                </div>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+            </Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </Container>
   );
 }
